@@ -1,0 +1,74 @@
+String validateEmail(String email) {
+  Pattern pattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  bool emailValid = new RegExp(pattern).hasMatch(email);
+  if (!emailValid) {
+    return 'Please enter a valid email';
+  } else {
+    return null;
+  }
+}
+
+String validatePassword(String password) {
+  if (password.length < 8) {
+    return 'Password must be 8 character long';
+  } else {
+    return null;
+  }
+}
+
+String validateRePassword(String password, String rePassword) {
+  if (password == rePassword) {
+    return null;
+  } else {
+    return 'Password not matched';
+  }
+}
+
+String validateUserName(String username) {
+  if (username.length < 6) {
+    return 'Username length must be 6 character long';
+  } else if (username.trim().isEmpty || username.trim() == '') {
+    return 'Please enter valid username';
+  } else {
+    return null;
+  }
+}
+
+String validatePhone(String phone) {
+  if (phone.isEmpty) {
+    return 'Please enter phone number';
+  }
+  if (phone.trim().length != 10) {
+    return 'Phone number must be 10 digits long';
+  }
+  try {
+    var phoneNu = int.parse(phone);
+  } on FormatException {
+    return 'Please enter numbers only';
+  }
+  return null;
+}
+
+dynamic validateServiceName(String value) {
+  if (value.isEmpty) {
+    return 'Service name is required.';
+  }
+  return null;
+}
+
+dynamic validateServicePrice(String value) {
+  if (value.isEmpty) {
+    return 'Service price is required.';
+  }
+  return null;
+}
+
+dynamic validatePhoneNumber(String value) {
+  Pattern pattern = r'/([^\d])\d{10}([^\d])/';
+  RegExp regex = new RegExp(pattern);
+  if (!regex.hasMatch(pattern)) {
+    return 'Please enter 10 digits only';
+  }
+  return null;
+}
